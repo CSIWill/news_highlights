@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Settings</title>
+    <link rel="stylesheet" href="../css/stylesheet.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <button onclick="window.location.href = '../index.html';">My Home Page</button>
+            <button onclick="window.location.href = './login.html';">Login</button>
+            <button onclick="window.location.href = './settings.html';">Settings</button>
+        </nav>
+    </header>
+    <main id="settings">
+        <h1>Settings</h1>
+        <section>
+            <h2>Sources</h2>
+            <form>
+                <ul>
+                    <li>
+                        <label for="select_ap">Associated Press</label>
+                        <input type="checkbox" id="select_ap">
+                    </li>
+                    <li>
+                        <label for="select_bbc">BBC</label>
+                        <input type="checkbox" id="select_bbc">
+                    </li>
+                    <li>
+                        <label for="select_cnn">CNN</label>
+                        <input type="checkbox" id="select_cnn">
+                    </li>
+                    <input class="btn" type="submit" value="Submit">
+                </ul>
+            </form>
+        </section>
+        <section>
+            <h2>Topics</h2>
+            <form>
+                <ul>
+                    <li>
+                        <label for="select_current_events">Current Events</label>
+                        <input type="checkbox" id="select_current_events">
+                    </li>
+                    <li>
+                        <label for="select_technology">Technology</label>
+                        <input type="checkbox" id="select_technology">
+                    </li>
+                    <li>
+                        <label for="select_financial">Financial</label>
+                        <input type="checkbox" id="select_financial">
+                    </li>
+                    <input class="btn" type="submit" value="Submit">
+                </ul>
+            </form>
+        </section>
+    </main>
+    <footer>
+        &copy;2021, William Eng
+        <br>
+        Contact Us
+        <address>
+            <a id="email" href="mailto:weng2@oakland.edu">Email</a>
+        </address>
+    </footer>
+</body>
+
+</html>
