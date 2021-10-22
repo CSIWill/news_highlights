@@ -74,9 +74,7 @@ nav {
     text-align: center;
 }
 ul{
-    list-style-type:none;
-    text-align: right;
-    margin-right: 45%;
+
 }
 footer {
     color:rgba(255, 255, 255, 1);
@@ -105,4 +103,9 @@ footer {
 }
 #map {
     text-align: center;
+}
+.setting_check {
+    list-style-type:none;
+    text-align: right;
+    margin-right: 45%;
 }
