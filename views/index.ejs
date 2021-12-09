@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Home Page</title>
+    <link rel="stylesheet" href="../public/css/stylesheet.css">
+    <link rel="shortcut icon" href="../public/media/picture/Picture1.svg" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <nav>
+            <button onclick="window.location.href = '/';">My Home Page</button>
+            <button onclick="window.location.href = '/login';">Login</button>
+            <button onclick="window.location.href = '/settings';">Settings</button>
+        </nav>
+    </header>
+    <main>
+        <h1>Welcome</h1>
+        <h2>Here is your briefing</h2>
+        <section id="news">
+            <button class="news_buttons" onclick="window.location.href = '/ap';">Associated Press</button>
+            <button class="news_buttons" onclick="window.location.href = '/bbc';">BBC</button>
+            <button class="news_buttons" onclick="window.location.href = '/cnn';">CNN</button>
+        </section>
+        <figure id="map">
+            <iframe src="https://embed.waze.com/iframe?zoom=16&lat=42.671959&lon=-83.209598&ct=livemap" width="600"
+                height="450" allowfullscreen>Searchable Map</iframe>
+            <figcaption>Map by Waze</figcaption>
+        </figure>
+    </main>
+    <footer>
+        &copy;2021, William Eng
+        <br>
+        Contact Us
+        <address>
+            <a id="email" href="mailto:weng2@oakland.edu">Email</a>
+        </address>
+    </footer>
+</body>
+
+</html>

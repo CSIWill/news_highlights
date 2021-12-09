@@ -1,0 +1,27 @@
+{
+  "name": "news_highlights",
+  "version": "1.0.0",
+  "description": "Customized news highlights",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "debug": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CSIWill/news_highlights.git"
+  },
+  "author": "William Eng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CSIWill/news_highlights/issues"
+  },
+  "homepage": "https://github.com/CSIWill/news_highlights#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.15",
+    "package.json": "^2.0.1"
+  }
+}
