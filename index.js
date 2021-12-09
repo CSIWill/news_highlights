@@ -1,6 +1,6 @@
 const express = require('express');
 const ejs = require('ejs');
-require("dotenv").config();
+const dotenv = require("dotenv");
 
 // Create express app
 const app = express();
