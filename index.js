@@ -1,12 +1,17 @@
 const express = require('express');
-const path = require("path");
+const path = require('path');
 const ejs = require('ejs');
 const dotenv = require('dotenv');
 const NewsAPI = require('newsapi');
-const YOUR_API_KEY = 'ebb6d4fb6dc5441cb4969abe0c250886';
+const YOUR_API_KEY = 'e5b6885d442e4232a387c52ea87f6f45';
+const fetch = require('node-fetch');
+
+// const YOUR_API_KEY = 'ebb6d4fb6dc5441cb4969abe0c250886';
 const { json } = require('express/lib/response');
 const newsapi = new NewsAPI(YOUR_API_KEY);
-const API_KEY = `apiKey=ebb6d4fb6dc5441cb4969abe0c250886`;
+// const API_KEY = `apiKey=ebb6d4fb6dc5441cb4969abe0c250886`;
+const API_KEY = `apiKey=e5b6885d442e4232a387c52ea87f6f45`;
+const bodyParser = require('body-parser');
 
 // Create express app
 const app = express();
@@ -34,66 +39,59 @@ app.get('/settings', (req, res) => {
 });
 
 app.get('/search', (req, res) => {
-  let initSearch = "Hello, World";
+  let initSearch = "";
+  let newsArticlesList =  {};
   res.render('./html/search.ejs', {
-    urSearch: initSearch
+    urSearch: initSearch,
+    newsArticles: newsArticlesList,
   });
 });
 
 app.get('/ap', (req, res) => {
   res.render('./html/ap.ejs', {
-    api: API_KEY,
+    api: YOUR_API_KEY,
   });
 });
 
 app.get('/bbc', (req, res) => {
-  res.render('./html/bbc.ejs');
+  res.render('./html/bbc.ejs', {
+    api: YOUR_API_KEY,
+  });
 });
 
 app.get('/cnn', (req, res) => {
-  res.render('./html/cnn.ejs');
+  res.render('./html/cnn.ejs', {
+    api: YOUR_API_KEY,
+  });
 });
-
 app.post('/search/', (req, res) => {
   let reqSearch = req.body.userSearch
-
+  // newsapi.v2.everything({
+  //   q: reqSearch,
+  //   language: 'en',
+  //   sortBy: 'relevancy',
+  // }).then(response => {
+  //  var newsArticlesList = response;
+  // //   console.log(newsArticlesList)
+  // // console.log(typeof newsArticlesList)
+  // // console.log(typeof JSON.stringify(newsArticlesList))
+  // });
+  let newsArticlesList;
+  const url = `https://newsapi.org/v2/everything?` +
+    `q=${reqSearch}&` +
+    `apiKey=${YOUR_API_KEY}`;
+  fetch(url).then((response) => {
+    return response.json();
+  }).then((data) => {
+    newsArticlesList = data.articles;
+    console.log(newsArticlesList);
+  })
   res.render('./html/search', {
     urSearch: reqSearch,
+    newsArticles: newsArticlesList,
   });
 });
 
 // Setup server ports
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server is running on ${PORT}`));
-
-// let newsArticles;
-// const url = `https://newsapi.org/v2/everything?` +
-//   `q=Technology&` +
-//   `sources=associated-press&` +
-//   `apiKey=${YOUR_API_KEY}`;
-// const req = new Request(url);
-// let data;
-// fetch(req).then((res) => {
-//   return res.json();
-// }).then((data) => {
-//   newsArticles = data;
-// });
-
-// newsapi.v2.everything({
-//   q: 'bitcoin',
-//   sources: 'bbc-news,the-verge',
-//   domains: 'bbc.co.uk, techcrunch.com',
-//   from: '2017-12-01',
-//   to: '2017-12-12',
-//   language: 'en',
-//   sortBy: 'relevancy',
-//   page: 2
-// }).then(response => {
-//   console.log(response);
-//   /*
-//     {
-//       status: "ok",
-//       articles: [...]
-//     }
-//   */
-// });

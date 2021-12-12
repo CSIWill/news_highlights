@@ -32,8 +32,6 @@
                     <figcaption>Associated Press Breaking News</figcaption>
                 </figure>
             </div>
-            
-
             <div>
                 <h2>Topics</h2>
                 <form>
@@ -60,47 +58,7 @@
                     <h3>Current Events</h3>
                     <a href="https://apnews.com/hub/trending-news" aria-label="Associated Press Trending News"> More
                         Current Events</a>
-                    <ul>                    </ul>
-                </div>
-                <div class="technology">
-                    <h3>Technology</h3>
-                    <a href="https://apnews.com/hub/technology?utm_source=apnewsnav&utm_medium=navigation"
-                        aria-label="Associated Press Technology News"> More Technology News</a>
-                    <ul id="technology"></ul>
-                </div>
-                <%var my_api = api%> 
-                <script defer>
-                    let newsArticles;
-                    const newsList = document.getElementById('technology');
-                    const url = `https://newsapi.org/v2/everything?` +
-                        `q=Technology&` +
-                        `sources=associated-press&` + 
-                        `apiKey=ebb6d4fb6dc5441cb4969abe0c250886`;
-                    const req = new Request(url);
-                    let data; 
-                    fetch(req).then((res) => {    
-                        return res.json();
-                        }).then((data) => {
-                            newsArticles = data;
-                            // console.log(data);
-                            data.articles.forEach(articles => {
-                                let newsArticle = document.createElement('li');
-                                let newsLink = document.createElement('a');
-                                newsLink.setAttribute('href', articles.url);
-                                // open in new tab
-                                newsLink.setAttribute('target', '_blank');
-                                newsArticle.textContent = articles.title;
-                                newsLink.textContent = 'Link';
-                                newsArticle.appendChild(newsLink);
-                                newsList.appendChild(newsArticle);
-                            })
-                        })
-                </script>
-                <div class="financial">
-                    <h3>Financial</h3>
-                    <a href="https://apnews.com/hub/business?utm_source=apnewsnav&utm_medium=navigation "
-                        aria-label="Associated Press Business News"> More Financial News</a>
-                    <ul id="financial"></ul>
+                    <ul id="current_events"></ul>
                 </div>
             </div>
         </section>
@@ -114,5 +72,29 @@
         </address>
     </footer>
 </body>
-
+<script defer>
+    let newsArticlesList;
+    const newsList = document.getElementById('current_events');
+    const url = `https://newsapi.org/v2/top-headlines?` +
+        `sources=associated-press&` + 
+        `apiKey=e5b6885d442e4232a387c52ea87f6f45`;
+    const req = new Request(url);
+    fetch(req).then((res) => {    
+        return res.json();
+        }).then((data) => {
+            newsArticlesList = data;
+            // console.log(newsArticlesList);
+            newsArticlesList.articles.forEach(articles => {
+                let newsArticle = document.createElement('li');
+                let newsLink = document.createElement('a');
+                newsLink.setAttribute('href', articles.url);
+                // open in new tab
+                newsLink.setAttribute('target', '_blank');
+                newsArticle.textContent = articles.title;
+                newsLink.textContent = 'Link';
+                newsArticle.appendChild(newsLink);
+                newsList.appendChild(newsArticle);
+            })
+        })
+</script>
 </html>

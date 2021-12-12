@@ -31,9 +31,9 @@ nav {
     width: auto;
 }
 .current_events {
-    float: left;
+    /* float: left; */
     height: max-content;
-    width: 30%;
+    width: 50%;
     padding: 0% 1% 1% 1%;
     border-left-style: solid;
     height: 50%;

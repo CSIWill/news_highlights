@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../public/css/stylesheet.css">
     <link rel="shortcut icon" href="../../public/media/picture/Picture1.svg" type="image/x-icon">
 </head>
+
 <body>
     <header>
         <nav>
@@ -39,17 +40,19 @@
     </footer>
 </body>
 <script defer>
-    let newsArticlesList;
+    let newsArticlesList = <%-JSON.stringify(newsArticles)%>;
     const newsList = document.getElementById('searchResults');
-    const url = `https://newsapi.org/v2/everything?` +
-        `q=<%=`${urSearch}`%>&` +
-        `apiKey=e5b6885d442e4232a387c52ea87f6f45`;
-    const req = new Request(url);
-    fetch(req).then((res) => {
-        return res.json();
-    }).then((data) => {
-        newsArticlesList = data;
-        // console.log(newsArticlesList);
+    console.log(newsArticlesList);
+    // const url = `https://newsapi.org/v2/everything?` +
+    //     `q=Technology&` +
+    //     `sources=associated-press&` +
+    //     `apiKey=e5b6885d442e4232a387c52ea87f6f45`;
+    // const req = new Request(url);
+    // fetch(req).then((res) => {
+    //     return res.json();
+    // }).then((data) => {
+    //     newsArticlesList = data;
+    //     // console.log(data);
         newsArticlesList.articles.forEach(articles => {
             let newsArticle = document.createElement('li');
             let newsLink = document.createElement('a');
