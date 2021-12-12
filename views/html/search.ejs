@@ -13,15 +13,14 @@
     <header>
         <nav>
             <button onclick="window.location.href = '/';">My Home Page</button>
-            <!-- <button onclick="window.location.href = '/login';">Login</button> -->
-            <!-- <button onclick="window.location.href = '/settings';">Settings</button> -->
             <button onclick="window.location.href = '/search';">Search</button>
         </nav>
     </header>
     <main>
-        <h1>Search For News</h1>
+        <h1>Search For News Everywhere</h1>
         <form action="/search/" method="post">
             <input type="text" name="userSearch" id="userSearch">
+            <label for="userSearch">Search</label>
             <button type="submit">Submit</button>
         </form>
         <h2>
@@ -32,7 +31,7 @@
             <%= console.log(typeof newsArticles) %>
             <% for(let i = 0;i < newsArticles.length; i++) { %>
                 <li><%= `${newsArticles[i].title} FROM ${newsArticles[i].source.name}`%>
-                <a href=<%=`${newsArticles[i].url}`%>>Link</a>
+                <a href=<%=`${newsArticles[i].url}`%> aria-label=<%=`Follow Article to ${newsArticles[i].source.name}`%>>Link</a>
                 </li>
             <%} %>
         </ul>
@@ -46,8 +45,4 @@
         </address>
     </footer>
 </body>
-
 </html>
-<!-- <script>
-    JSON.parse
-</script> -->

@@ -36,35 +36,56 @@ app.get('/login', (req, res) => {
 app.get('/settings', (req, res) => {
   res.render('./html/settings.ejs');
 });
-
+let newsArticlesList;
 app.get('/search', (req, res) => {
-  let initSearch = "";
-  let newsArticlesList = {};
-  res.render('./html/search.ejs', {
-    urSearch: initSearch,
-    newsArticles: newsArticlesList,
+  let reqSearch = `Recent News`;
+  newsapi.v2.topHeadlines({
+    language: 'en',
+  }).then(response => {
+    newsArticlesList = response;
+  });
+  res.render('./html/search', {
+    urSearch: reqSearch,
+    newsArticles: newsArticlesList.articles,
   });
 });
 
 app.get('/ap', (req, res) => {
+  newsapi.v2.topHeadlines({
+    sources: 'associated-press',
+    language: 'en',
+  }).then(response => {
+    newsArticlesList = response;
+  });
   res.render('./html/ap.ejs', {
-    api: process.env.YOUR_API_KEY,
+    newsArticles: newsArticlesList.articles,
   });
 });
 
 app.get('/bbc', (req, res) => {
+  newsapi.v2.topHeadlines({
+    sources: 'bbc-news',
+    language: 'en',
+  }).then(response => {
+    newsArticlesList = response;
+  });
   res.render('./html/bbc.ejs', {
-    api: process.env.YOUR_API_KEY,
+    newsArticles: newsArticlesList.articles,
   });
 });
 
 app.get('/cnn', (req, res) => {
+  newsapi.v2.topHeadlines({
+    sources: 'cnn',
+    language: 'en',
+  }).then(response => {
+    newsArticlesList = response;
+  });
   res.render('./html/cnn.ejs', {
-    api: process.env.YOUR_API_KEY,
+    newsArticles: newsArticlesList.articles,
   });
 });
 
-let newsArticlesList;
 app.post('/search/', (req, res) => {
   let reqSearch = req.body.userSearch
   newsapi.v2.everything({
@@ -73,18 +94,8 @@ app.post('/search/', (req, res) => {
     sortBy: 'relevancy',
   }).then(response => {
     newsArticlesList = response;
-  //   console.log(newsArticlesList.articles)
-  // console.log(typeof newsArticlesList.articles)
-  // console.log(typeof JSON.stringify(newsArticlesList))
   });
-  // let newsArticlesList;
-  // const url = `https://newsapi.org/v2/everything?q=${reqSearch}&apiKey=${YOUR_API_KEY}`;
-  // fetch(url).then((response) => {
-  //   return response.json();
-  // }).then((data) => {
-  //   newsArticlesList = data.articles;
-  //   console.log(newsArticlesList);
-  // })
+ 
   res.render('./html/search', {
     urSearch: reqSearch,
     newsArticles: newsArticlesList.articles,

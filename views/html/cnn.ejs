@@ -14,8 +14,7 @@
     <header>
         <nav>
             <button onclick="window.location.href = '/';">My Home Page</button>
-            <!-- <button onclick="window.location.href = '/login';">Login</button>
-            <button onclick="window.location.href = '/settings';">Settings</button> -->
+            <button onclick="window.location.href = '/search';">Search</button>
         </nav>
     </header>
     <main>
@@ -32,32 +31,20 @@
                     <figcaption>CNN World News Youtube Playlist</figcaption>
                 </figure>
             </div>
-            <div>
-                <h2>Topics</h2>
-                <form>
-                    <ul class="setting_check">
-                        <li>
-                            <label for="select_current_events">Current Events</label>
-                            <input type="checkbox" id="select_current_events">
-                        </li>
-                        <li>
-                            <label for="select_technology">Technology</label>
-                            <input type="checkbox" id="select_technology">
-                        </li>
-                        <li>
-                            <label for="select_financial">Financial</label>
-                            <input type="checkbox" id="select_financial">
-                        </li>
-                        <input class="btn" type="submit" value="Submit">
-                    </ul>
-                </form>
-            </div>
             <div class="text">
                 <h2>News Feed</h2>
                 <div class="current_events">
                     <h3>Current Events</h3>
                     <a href="https://us.cnn.com/?refresh=1" aria-label="CNN Trending News"> More Current Events</a>
-                    <ul id="current_events"></ul>
+                    <ul id="current_events">
+                        <%= console.log(newsArticles) %>
+                        <%= console.log(typeof newsArticles) %>
+                        <% for(let i = 0;i < newsArticles.length; i++) { %>
+                            <li><%= `${newsArticles[i].title}`%>
+                            <a href=<%=`${newsArticles[i].url}`%> aria-label=<%=`Follow Article to ${newsArticles[i].source.name}`%>>Link</a>
+                            </li>
+                        <%} %>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -72,28 +59,4 @@
         </address>
     </footer>
 </body>
-<script defer>
-    const apiKey = '<%= api%>';
-    let newsArticlesList;
-    const newsList = document.getElementById('current_events');
-    const url = `https://newsapi.org/v2/top-headlines?sources=cnn&apiKey=${apiKey}`;
-    const req = new Request(url);
-    fetch(req).then((res) => {
-        return res.json();
-    }).then((data) => {
-        newsArticlesList = data;
-        console.log(newsArticlesList);
-        newsArticlesList.articles.forEach(articles => {
-            let newsArticle = document.createElement('li');
-            let newsLink = document.createElement('a');
-            newsLink.setAttribute('href', articles.url);
-            newsLink.setAttribute('target', '_blank');
-            newsArticle.textContent = articles.title;
-            newsLink.textContent = 'Link';
-            newsArticle.appendChild(newsLink);
-            newsList.appendChild(newsArticle);
-        })
-    })
-</script>
-
 </html>
