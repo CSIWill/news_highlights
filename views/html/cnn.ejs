@@ -14,8 +14,8 @@
     <header>
         <nav>
             <button onclick="window.location.href = '/';">My Home Page</button>
-            <button onclick="window.location.href = '/login';">Login</button>
-            <button onclick="window.location.href = '/settings';">Settings</button>
+            <!-- <button onclick="window.location.href = '/login';">Login</button>
+            <button onclick="window.location.href = '/settings';">Settings</button> -->
         </nav>
     </header>
     <main>
@@ -76,9 +76,7 @@
     const apiKey = '<%= api%>';
     let newsArticlesList;
     const newsList = document.getElementById('current_events');
-    const url = `https://newsapi.org/v2/top-headlines?` +
-        `sources=cnn&` +
-        `apiKey=${apiKey}`;
+    const url = `https://newsapi.org/v2/top-headlines?sources=cnn&apiKey=${apiKey}`;
     const req = new Request(url);
     fetch(req).then((res) => {
         return res.json();

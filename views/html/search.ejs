@@ -13,8 +13,8 @@
     <header>
         <nav>
             <button onclick="window.location.href = '/';">My Home Page</button>
-            <button onclick="window.location.href = '/login';">Login</button>
-            <button onclick="window.location.href = '/settings';">Settings</button>
+            <!-- <button onclick="window.location.href = '/login';">Login</button> -->
+            <!-- <button onclick="window.location.href = '/settings';">Settings</button> -->
             <button onclick="window.location.href = '/search';">Search</button>
         </nav>
     </header>
@@ -27,7 +27,15 @@
         <h2>
             <%= `Here are the search results for ${urSearch}`%>
         </h2>
-        <ul id="searchResults"></ul>
+        <ul id="searchResults">
+            <%= console.log(newsArticles) %>
+            <%= console.log(typeof newsArticles) %>
+            <% for(let i = 0;i < newsArticles.length; i++) { %>
+                <li><%= `${newsArticles[i].title} FROM ${newsArticles[i].source.name}`%>
+                <a href=<%=`${newsArticles[i].url}`%>>Link</a>
+                </li>
+            <%} %>
+        </ul>
     </main>
     <footer>
         &copy;2021, William Eng
@@ -38,30 +46,8 @@
         </address>
     </footer>
 </body>
-<script defer>
-    let newsArticlesList;
-    const newsList = document.getElementById('searchResults');
-    const url = `https://newsapi.org/v2/everything?` +
-        `q=<%=`${urSearch}`%>&` +
-        `apiKey=e5b6885d442e4232a387c52ea87f6f45`;
-    const req = new Request(url);
-    fetch(req).then((res) => {
-        return res.json();
-    }).then((data) => {
-        newsArticlesList = data;
-        // console.log(newsArticlesList);
-        newsArticlesList.articles.forEach(articles => {
-            let newsArticle = document.createElement('li');
-            let newsLink = document.createElement('a');
-            newsLink.setAttribute('href', articles.url);
-            // open in new tab
-            newsLink.setAttribute('target', '_blank');
-            newsArticle.textContent = articles.title;
-            newsLink.textContent = 'Link';
-            newsArticle.appendChild(newsLink);
-            newsList.appendChild(newsArticle);
-        })
-    })
-</script>
 
 </html>
+<!-- <script>
+    JSON.parse
+</script> -->

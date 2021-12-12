@@ -1,21 +1,20 @@
 const express = require('express');
 const path = require('path');
 const ejs = require('ejs');
+const fetch = require('node-fetch');
 const dotenv = require('dotenv');
 const NewsAPI = require('newsapi');
-const YOUR_API_KEY = 'e5b6885d442e4232a387c52ea87f6f45';
-const fetch = require('node-fetch');
+dotenv.config({ path: "./config.env" });
+const newsapi = new NewsAPI(process.env.YOUR_API_KEY);
+// const YOUR_API_KEY = 'e5b6885d442e4232a387c52ea87f6f45';
 
 // const YOUR_API_KEY = 'ebb6d4fb6dc5441cb4969abe0c250886';
 const { json } = require('express/lib/response');
-const newsapi = new NewsAPI(YOUR_API_KEY);
-// const API_KEY = `apiKey=ebb6d4fb6dc5441cb4969abe0c250886`;
-const API_KEY = `apiKey=e5b6885d442e4232a387c52ea87f6f45`;
-const bodyParser = require('body-parser');
+
 
 // Create express app
 const app = express();
-dotenv.config({ path: "./config.env" });
+
 
 // Initialize Body Parser Middleware to parse data sent by users in the request object
 app.use(express.json());
@@ -40,7 +39,7 @@ app.get('/settings', (req, res) => {
 
 app.get('/search', (req, res) => {
   let initSearch = "";
-  let newsArticlesList =  {};
+  let newsArticlesList = {};
   res.render('./html/search.ejs', {
     urSearch: initSearch,
     newsArticles: newsArticlesList,
@@ -49,46 +48,46 @@ app.get('/search', (req, res) => {
 
 app.get('/ap', (req, res) => {
   res.render('./html/ap.ejs', {
-    api: YOUR_API_KEY,
+    api: process.env.YOUR_API_KEY,
   });
 });
 
 app.get('/bbc', (req, res) => {
   res.render('./html/bbc.ejs', {
-    api: YOUR_API_KEY,
+    api: process.env.YOUR_API_KEY,
   });
 });
 
 app.get('/cnn', (req, res) => {
   res.render('./html/cnn.ejs', {
-    api: YOUR_API_KEY,
+    api: process.env.YOUR_API_KEY,
   });
 });
+
+let newsArticlesList;
 app.post('/search/', (req, res) => {
   let reqSearch = req.body.userSearch
-  // newsapi.v2.everything({
-  //   q: reqSearch,
-  //   language: 'en',
-  //   sortBy: 'relevancy',
-  // }).then(response => {
-  //  var newsArticlesList = response;
-  // //   console.log(newsArticlesList)
-  // // console.log(typeof newsArticlesList)
-  // // console.log(typeof JSON.stringify(newsArticlesList))
-  // });
-  let newsArticlesList;
-  const url = `https://newsapi.org/v2/everything?` +
-    `q=${reqSearch}&` +
-    `apiKey=${YOUR_API_KEY}`;
-  fetch(url).then((response) => {
-    return response.json();
-  }).then((data) => {
-    newsArticlesList = data.articles;
-    console.log(newsArticlesList);
-  })
+  newsapi.v2.everything({
+    q: reqSearch,
+    language: 'en',
+    sortBy: 'relevancy',
+  }).then(response => {
+    newsArticlesList = response;
+  //   console.log(newsArticlesList.articles)
+  // console.log(typeof newsArticlesList.articles)
+  // console.log(typeof JSON.stringify(newsArticlesList))
+  });
+  // let newsArticlesList;
+  // const url = `https://newsapi.org/v2/everything?q=${reqSearch}&apiKey=${YOUR_API_KEY}`;
+  // fetch(url).then((response) => {
+  //   return response.json();
+  // }).then((data) => {
+  //   newsArticlesList = data.articles;
+  //   console.log(newsArticlesList);
+  // })
   res.render('./html/search', {
     urSearch: reqSearch,
-    newsArticles: newsArticlesList,
+    newsArticles: newsArticlesList.articles,
   });
 });
 
