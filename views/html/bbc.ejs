@@ -32,7 +32,27 @@
                     <figcaption>BBC Latest World News Youtube Playlist</figcaption>
                 </figure>
             </div>
-            <div class="text">
+            <div>
+                <h2>Topics</h2>
+                <form>
+                    <ul class="setting_check">
+                        <li>
+                            <label for="select_current_events">Current Events</label>
+                            <input type="checkbox" id="select_current_events">
+                        </li>
+                        <li>
+                            <label for="select_technology">Technology</label>
+                            <input type="checkbox" id="select_technology">
+                        </li>
+                        <li>
+                            <label for="select_financial">Financial</label>
+                            <input type="checkbox" id="select_financial">
+                        </li>
+                        <input class="btn" type="submit" value="Submit">
+                    </ul>
+                </form>
+            </div>
+            <!-- <div class="text">
                 <h2>News Feed</h2>
                 <div class="current_events">
                     <h3>Current Events</h3>
@@ -70,8 +90,18 @@
                                 aria-label="Continue to full story">Link</a></li>
                     </ul>
                 </div>
-            </div>
+            </div> -->
         </section>
+        <script defer>
+        var url = 'https://newsapi.org/v2/top-headlines?' +
+            'sources=bbc-news&' +
+            'apiKey=ebb6d4fb6dc5441cb4969abe0c250886';
+  var req = new Request(url);
+  fetch(req)
+      .then(function(response) {
+          console.log(response.json());
+      })
+      </script>
     </main>
     <footer>
         &copy;2021, William Eng

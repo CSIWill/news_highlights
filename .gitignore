@@ -1,5 +1,4 @@
-/html/reuters.html
-/html/video.html
-/node-module
+node_modules
+*.ini
 package-lock.json
 config.env

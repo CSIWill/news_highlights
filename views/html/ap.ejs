@@ -32,51 +32,75 @@
                     <figcaption>Associated Press Breaking News</figcaption>
                 </figure>
             </div>
+            
+
+            <div>
+                <h2>Topics</h2>
+                <form>
+                    <ul class="setting_check">
+                        <li>
+                            <label for="select_current_events">Current Events</label>
+                            <input type="checkbox" id="select_current_events">
+                        </li>
+                        <li>
+                            <label for="select_technology">Technology</label>
+                            <input type="checkbox" id="select_technology">
+                        </li>
+                        <li>
+                            <label for="select_financial">Financial</label>
+                            <input type="checkbox" id="select_financial">
+                        </li>
+                        <input class="btn" type="submit" value="Submit">
+                    </ul>
+                </form>
+            </div>
             <div class="text">
                 <h2>News Feed</h2>
                 <div class="current_events">
                     <h3>Current Events</h3>
-                    <a href="https://apnews.com/hub/trending-news" aria-label="Associated Press Trending News"> More Current Events</a>
-                    <ul>
-                        <li>Haiti gang leader threatens to kill kidnapped missionaries <a
-                                href="https://apnews.com/article/media-haiti-e9691f276ef13e682b5b910ec09c706b"
-                                aria-label="Continue to full story">Link</a>
-                        </li>
-                        <li>India celebrates 1B vaccine doses, hopes to speed 2nd shots <a
-                                href="https://apnews.com/article/coronavirus-pandemic-business-health-asia-india-6946d0dd95d43975e383d28726af3fe4l"
-                                aria-label="Continue to full story">Link</a>
-                        </li>
-                    </ul>
+                    <a href="https://apnews.com/hub/trending-news" aria-label="Associated Press Trending News"> More
+                        Current Events</a>
+                    <ul>                    </ul>
                 </div>
                 <div class="technology">
                     <h3>Technology</h3>
                     <a href="https://apnews.com/hub/technology?utm_source=apnewsnav&utm_medium=navigation"
                         aria-label="Associated Press Technology News"> More Technology News</a>
-                    <ul>
-                        <li>NTSB: Driver was behind wheel at time of Texas Tesla crash <a
-                                href="https://apnews.com/article/technology-business-transportation-transportation-safety-national-transportation-safety-board-02cc296baa2fad95e68fa3ce3ba2d4b2"
-                                aria-label="Continue to full story">Link</a>
-                        </li>
-                        <li>Bid to unionize Amazon workers in New York nears milestone <a
-                                href="https://apnews.com/article/technology-business-staten-island-labor-unions-national-labor-relations-board-e0b998ff8b79bff7e4c48234b7d3490a"
-                                aria-label="Continue to full story">Link</a>
-                        </li>
-                    </ul>
+                    <ul id="technology"></ul>
                 </div>
+                <%var my_api = api%> 
+                <script defer>
+                    let newsArticles;
+                    const newsList = document.getElementById('technology');
+                    const url = `https://newsapi.org/v2/everything?` +
+                        `q=Technology&` +
+                        `sources=associated-press&` + 
+                        `apiKey=ebb6d4fb6dc5441cb4969abe0c250886`;
+                    const req = new Request(url);
+                    let data; 
+                    fetch(req).then((res) => {    
+                        return res.json();
+                        }).then((data) => {
+                            newsArticles = data;
+                            // console.log(data);
+                            data.articles.forEach(articles => {
+                                let newsArticle = document.createElement('li');
+                                let newsLink = document.createElement('a');
+                                newsLink.setAttribute('href', articles.url);
+                                // open in new tab
+                                newsLink.setAttribute('target', '_blank');
+                                newsArticle.textContent = articles.title;
+                                newsLink.textContent = 'Link';
+                                newsArticle.appendChild(newsLink);
+                                newsList.appendChild(newsArticle);
+                            })
+                        })
+                </script>
                 <div class="financial">
                     <h3>Financial</h3>
                     <a href="https://apnews.com/hub/business?utm_source=apnewsnav&utm_medium=navigation "
                         aria-label="Associated Press Business News"> More Financial News</a>
-                    <ul>
-                        <li>US unemployment claims fall to new pandemic low of 290,000 <a
-                                href="https://apnews.com/article/business-layoffs-jerome-powell-2d5e83cf26b378d5278d5adba1673ca1"
-                                aria-label="Continue to full story">Link</a>
-                        </li>
-                        <li>Fed imposes sweeping new limits on policymakers’ investments <a
-                                href="https://apnews.com/article/business-d361e2f21df3f4cdebef4a202bff7d3d"
-                                aria-label="Continue to full story">Link</a>
-                        </li>
-                    </ul>
+                    <ul id="financial"></ul>
                 </div>
             </div>
         </section>
