@@ -5,7 +5,8 @@ const fetch = require('node-fetch');
 const dotenv = require('dotenv');
 const NewsAPI = require('newsapi');
 dotenv.config({ path: "./config.env" });
-const newsapi = new NewsAPI(process.env.YOUR_API_KEY);
+// const newsapi = new NewsAPI(process.env.YOUR_API_KEY);
+const newsapi = new NewsAPI(YOUR_API_KEY);
 // const newsapi = new NewsAPI('e5b6885d442e4232a387c52ea87f6f45');
 // const YOUR_API_KEY = 'e5b6885d442e4232a387c52ea87f6f45';
 
