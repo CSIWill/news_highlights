@@ -38,71 +38,79 @@ app.get('/login', (req, res) => {
 app.get('/settings', (req, res) => {
   res.render('./html/settings.ejs');
 });
-let newsArticlesList;
-app.get('/search', (req, res) => {
-  let reqSearch = `Recent News`;
-  newsapi.v2.topHeadlines({
-    language: 'en',
-  }).then(response => {
-    newsArticlesList = response;
+
+//initialize newsArticlesList
+newsapi.v2.topHeadlines({
+  language: 'en',
+}).then(async (response) => {
+  let newsArticlesList = response;
+  app.get('/search', (req, res) => {
+    let reqSearch = `Recent News`;
+    newsapi.v2.topHeadlines({
+      language: 'en',
+    }).then(async (response) => {
+      newsArticlesList = await response;
+    });
+    res.render('./html/search', {
+      urSearch: reqSearch,
+      newsArticles: newsArticlesList.articles,
+    });
   });
-  res.render('./html/search', {
-    urSearch: reqSearch,
-    newsArticles: newsArticlesList.articles,
+  
+  app.get('/ap', (req, res) => {
+    newsapi.v2.topHeadlines({
+      sources: 'associated-press',
+      language: 'en',
+    }).then(async (response) => {
+      newsArticlesList = await response;
+    });
+    res.render('./html/ap.ejs', {
+      newsArticles: newsArticlesList.articles,
+    });
+  });
+  
+  app.get('/bbc', (req, res) => {
+    newsapi.v2.topHeadlines({
+      sources: 'bbc-news',
+      language: 'en',
+    }).then(async (response) => {
+      newsArticlesList = await response;
+    });
+    res.render('./html/bbc.ejs', {
+      newsArticles: newsArticlesList.articles,
+    });
+  });
+  
+  app.get('/cnn', (req, res) => {
+    newsapi.v2.topHeadlines({
+      sources: 'cnn',
+      language: 'en',
+    }).then(async (response) => {
+      newsArticlesList = await response;
+    });
+    res.render('./html/cnn.ejs', {
+      newsArticles: newsArticlesList.articles,
+    });
+  });
+  
+  app.post('/search/', (req, res) => {
+    let reqSearch = req.body.userSearch
+    newsapi.v2.everything({
+      q: reqSearch,
+      language: 'en',
+      sortBy: 'relevancy',
+    }).then(async (response) => {
+      newsArticlesList = await response;
+      console.log(newsArticlesList);
+    });
+    res.render('./html/search', {
+      urSearch: reqSearch,
+      newsArticles: newsArticlesList.articles,
+    });
   });
 });
 
-app.get('/ap', (req, res) => {
-  newsapi.v2.topHeadlines({
-    sources: 'associated-press',
-    language: 'en',
-  }).then(response => {
-    newsArticlesList = response;
-  });
-  res.render('./html/ap.ejs', {
-    newsArticles: newsArticlesList.articles,
-  });
-});
 
-app.get('/bbc', (req, res) => {
-  newsapi.v2.topHeadlines({
-    sources: 'bbc-news',
-    language: 'en',
-  }).then(response => {
-    newsArticlesList = response;
-  });
-  res.render('./html/bbc.ejs', {
-    newsArticles: newsArticlesList.articles,
-  });
-});
-
-app.get('/cnn', (req, res) => {
-  newsapi.v2.topHeadlines({
-    sources: 'cnn',
-    language: 'en',
-  }).then(response => {
-    newsArticlesList = response;
-  });
-  res.render('./html/cnn.ejs', {
-    newsArticles: newsArticlesList.articles,
-  });
-});
-
-app.post('/search/', (req, res) => {
-  let reqSearch = req.body.userSearch
-  newsapi.v2.everything({
-    q: reqSearch,
-    language: 'en',
-    sortBy: 'relevancy',
-  }).then(response => {
-    newsArticlesList = response;
-  });
- 
-  res.render('./html/search', {
-    urSearch: reqSearch,
-    newsArticles: newsArticlesList.articles,
-  });
-});
 
 // Setup server ports
 const PORT = process.env.PORT || 3000;

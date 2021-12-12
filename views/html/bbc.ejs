@@ -37,8 +37,6 @@
                     <h3>Current Events</h3>
                     <a href="https://www.bbc.com/news" aria-label="BBC Trending News"> More Current Events</a>
                     <ul id="current_events">
-                        <%= console.log(newsArticles) %>
-                        <%= console.log(typeof newsArticles) %>
                         <% for(let i = 0;i < newsArticles.length; i++) { %>
                             <li><%= `${newsArticles[i].title}`%>
                             <a href=<%=`${newsArticles[i].url}`%> aria-label=<%=`Follow Article to ${newsArticles[i].source.name}`%>>Link</a>

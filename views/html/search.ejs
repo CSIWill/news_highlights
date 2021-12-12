@@ -27,8 +27,6 @@
             <%= `Here are the search results for ${urSearch}`%>
         </h2>
         <ul id="searchResults">
-            <%= console.log(newsArticles) %>
-            <%= console.log(typeof newsArticles) %>
             <% for(let i = 0;i < newsArticles.length; i++) { %>
                 <li><%= `${newsArticles[i].title} FROM ${newsArticles[i].source.name}`%>
                 <a href=<%=`${newsArticles[i].url}`%> aria-label=<%=`Follow Article to ${newsArticles[i].source.name}`%>>Link</a>
