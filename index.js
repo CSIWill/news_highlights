@@ -27,6 +27,7 @@ app.get("/", (req, res) => {
   res.render("index.ejs");
 });
 
+// router to use api
 app.use(newsAPIRoutes);
 
 // Setup server ports

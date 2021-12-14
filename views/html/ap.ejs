@@ -45,6 +45,30 @@
                         <%} %>
                     </ul>
                 </div>
+                <div class="current_events">
+                    <h3>Tech News</h3>
+                    <a href="https://apnews.com/hub/technology" target="_blank" aria-label="Associated Press Tech News"> More
+                        Tech News</a>
+                    <ul id="current_events">
+                        <% for(let i = 0;i < techNewsArticles.length; i++) { %>
+                            <li><%= `${techNewsArticles[i].title}`%>
+                            <a href=<%=`${techNewsArticles[i].url}`%> target="_blank"  aria-label=<%=`Follow Article to ${techNewsArticles[i].source.name}`%>>Link</a>
+                            </li>
+                        <%} %>
+                    </ul>
+                </div>
+                <div class="current_events">
+                    <h3>Business</h3>
+                    <a href="https://apnews.com/hub/business" target="_blank" aria-label="Associated Press Business News"> More
+                        Business News</a>
+                    <ul id="current_events">
+                        <% for(let i = 0;i < businessNewsArticles.length; i++) { %>
+                            <li><%= `${businessNewsArticles[i].title}`%>
+                            <a href=<%=`${businessNewsArticles[i].url}`%> target="_blank"  aria-label=<%=`Follow Article to ${businessNewsArticles[i].source.name}`%>>Link</a>
+                            </li>
+                        <%} %>
+                    </ul>
+                </div>
             </div>
         </section>
     </main>
