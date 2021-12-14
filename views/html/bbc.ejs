@@ -37,7 +37,7 @@
                     <h3>Current Events</h3>
                     <a href="https://www.bbc.com/news" target="_blank" aria-label="BBC Trending News"> More Current
                         Events</a>
-                    <ul id="current_events">
+                    <ul>
                         <% for(let i=0;i < newsArticles.length; i++) { %>
                             <li>
                                 <%= `${newsArticles[i].title}`%>
@@ -51,7 +51,7 @@
                     <h3>Tech News</h3>
                     <a href="https://www.bbc.com/news/technology" target="_blank" aria-label="BBC Tech News"> More
                         Tech News</a>
-                    <ul id="current_events">
+                    <ul>
                         <% for(let i=0;i < techNewsArticles.length; i++) { %>
                             <li>
                                 <%= `${techNewsArticles[i].title}`%>
@@ -65,7 +65,7 @@
                     <h3>Business</h3>
                     <a href="https://www.bbc.com/news/business" target="_blank" aria-label="BBC Business News"> More
                         Business News</a>
-                    <ul id="current_events">
+                    <ul>
                         <% for(let i=0;i < businessNewsArticles.length; i++) { %>
                             <li>
                                 <%= `${businessNewsArticles[i].title}`%>

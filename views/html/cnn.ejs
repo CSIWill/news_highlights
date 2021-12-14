@@ -37,7 +37,7 @@
                     <h3>Current Events</h3>
                     <a href="https://us.cnn.com/?refresh=1" target="_blank" aria-label="CNN Trending News"> More Current
                         Events</a>
-                    <ul id="current_events">
+                    <ul>
                         <% for(let i=0;i < newsArticles.length; i++) { %>
                             <li>
                                 <%= `${newsArticles[i].title}`%>
@@ -51,7 +51,7 @@
                     <h3>Tech News</h3>
                     <a href="https://www.cnn.com/business/tech" target="_blank" aria-label="CNN Tech News"> More
                         Tech News</a>
-                    <ul id="current_events">
+                    <ul>
                         <% for(let i=0;i < techNewsArticles.length; i++) { %>
                             <li>
                                 <%= `${techNewsArticles[i].title}`%>
@@ -65,7 +65,7 @@
                     <h3>Business</h3>
                     <a href="https://www.cnn.com/business" target="_blank" aria-label="CNN Business News"> More
                         Business News</a>
-                    <ul id="current_events">
+                    <ul>
                         <% for(let i=0;i < businessNewsArticles.length; i++) { %>
                             <li>
                                 <%= `${businessNewsArticles[i].title}`%>

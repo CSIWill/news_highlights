@@ -38,7 +38,7 @@
                     <a href="https://apnews.com/hub/trending-news" target="_blank"
                         aria-label="Associated Press Trending News"> More
                         Current Events</a>
-                    <ul id="current_events">
+                    <ul>
                         <% for(let i=0;i < newsArticles.length; i++) { %>
                             <li>
                                 <%= `${newsArticles[i].title}`%>
@@ -53,7 +53,7 @@
                     <a href="https://apnews.com/hub/technology" target="_blank" aria-label="Associated Press Tech News">
                         More
                         Tech News</a>
-                    <ul id="current_events">
+                    <ul>
                         <% for(let i=0;i < techNewsArticles.length; i++) { %>
                             <li>
                                 <%= `${techNewsArticles[i].title}`%>
@@ -68,7 +68,7 @@
                     <a href="https://apnews.com/hub/business" target="_blank"
                         aria-label="Associated Press Business News"> More
                         Business News</a>
-                    <ul id="current_events">
+                    <ul>
                         <% for(let i=0;i < businessNewsArticles.length; i++) { %>
                             <li>
                                 <%= `${businessNewsArticles[i].title}`%>

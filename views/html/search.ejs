@@ -27,15 +27,17 @@
         <h2>
             <%= `Here are the search results for ${urSearch}`%>
         </h2>
-        <ul id="searchResults">
-            <% for(let i=0;i < newsArticles.length; i++) { %>
-                <li>
-                    <%= `${newsArticles[i].title} FROM ${newsArticles[i].source.name}`%>
-                        <a href=<%=`${newsArticles[i].url}`%> target="_blank" aria-label=<%=`Follow Article to
-                                ${newsArticles[i].source.name}`%>>Link</a>
-                </li>
-                <%} %>
-        </ul>
+        <div class="current_events">
+            <ul>
+                <% for(let i=0;i < newsArticles.length; i++) { %>
+                    <li>
+                        <%= `${newsArticles[i].title} FROM ${newsArticles[i].source.name}`%>
+                            <a href=<%=`${newsArticles[i].url}`%> target="_blank" aria-label=<%=`Follow Article to
+                                    ${newsArticles[i].source.name}`%>>Link</a>
+                    </li>
+                    <%} %>
+            </ul>
+        </div>
     </main>
     <footer>
         &copy;2021, William Eng
