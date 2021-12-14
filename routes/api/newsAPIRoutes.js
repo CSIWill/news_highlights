@@ -16,20 +16,20 @@ newsapi.v2.topHeadlines({
   let newsArticlesList = await data;
   let techNewsArticlesList = await data;
   let businessNewsArticlesList = await data;
-// search page
-  router.get('/search', (req, res) => {
+  // search page
+  router.get('/search', async (req, res) => {
     let reqSearch = `Recent News`;
-    newsapi.v2.topHeadlines({
+    await newsapi.v2.topHeadlines({
       language: 'en',
     }).then(async (data) => {
-      newsArticlesList =  await data;
+      newsArticlesList = await data;
     });
     res.render('./html/search', {
       urSearch: reqSearch,
       newsArticles: newsArticlesList.articles,
     });
   });
-// Associated Press Page
+  // Associated Press Page
   router.get('/news/ap', async (req, res) => {
     await newsapi.v2.topHeadlines({
       sources: 'associated-press',
@@ -59,13 +59,13 @@ newsapi.v2.topHeadlines({
       businessNewsArticles: businessNewsArticlesList.articles,
     });
   });
-// BBC News Page  
+  // BBC News Page  
   router.get('/news/bbc', async (req, res) => {
     await newsapi.v2.topHeadlines({
       sources: 'bbc-news',
       language: 'en',
     }).then(async (data) => {
-      newsArticlesList =  await data;
+      newsArticlesList = await data;
     });
     await newsapi.v2.everything({
       q: 'Technology',
@@ -89,7 +89,7 @@ newsapi.v2.topHeadlines({
       businessNewsArticles: businessNewsArticlesList.articles,
     });
   });
-// CNN News Page  
+  // CNN News Page  
   router.get('/news/cnn', async (req, res) => {
     await newsapi.v2.topHeadlines({
       sources: 'cnn',
@@ -119,7 +119,7 @@ newsapi.v2.topHeadlines({
       businessNewsArticles: businessNewsArticlesList.articles,
     });
   });
-  
+
   router.post('/search/', async (req, res) => {
     let reqSearch = req.body.userSearch || `Recent News`;
     await newsapi.v2.everything({

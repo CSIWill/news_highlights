@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const ejs = require('ejs');
-const router= express.Router;
+const router = express.Router;
 const fetch = require('node-fetch');
 const dotenv = require('dotenv');
 const reqOptions = { 'mode': 'cors', headers: { 'Access-Control-Allow-Origin': '*' } };

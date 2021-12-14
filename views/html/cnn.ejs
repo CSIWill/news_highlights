@@ -35,13 +35,16 @@
                 <h2>News Feed</h2>
                 <div class="current_events">
                     <h3>Current Events</h3>
-                    <a href="https://us.cnn.com/?refresh=1" target="_blank" aria-label="CNN Trending News"> More Current Events</a>
+                    <a href="https://us.cnn.com/?refresh=1" target="_blank" aria-label="CNN Trending News"> More Current
+                        Events</a>
                     <ul id="current_events">
-                        <% for(let i = 0;i < newsArticles.length; i++) { %>
-                            <li><%= `${newsArticles[i].title}`%>
-                            <a href=<%=`${newsArticles[i].url}`%> target="_blank"  aria-label=<%=`Follow Article to ${newsArticles[i].source.name}`%>>Link</a>
+                        <% for(let i=0;i < newsArticles.length; i++) { %>
+                            <li>
+                                <%= `${newsArticles[i].title}`%>
+                                    <a href=<%=`${newsArticles[i].url}`%> target="_blank" aria-label=<%=`Follow Article
+                                            to ${newsArticles[i].source.name}`%>>Link</a>
                             </li>
-                        <%} %>
+                            <%} %>
                     </ul>
                 </div>
                 <div class="current_events">
@@ -49,23 +52,27 @@
                     <a href="https://www.cnn.com/business/tech" target="_blank" aria-label="CNN Tech News"> More
                         Tech News</a>
                     <ul id="current_events">
-                        <% for(let i = 0;i < techNewsArticles.length; i++) { %>
-                            <li><%= `${techNewsArticles[i].title}`%>
-                            <a href=<%=`${techNewsArticles[i].url}`%> target="_blank"  aria-label=<%=`Follow Article to ${techNewsArticles[i].source.name}`%>>Link</a>
+                        <% for(let i=0;i < techNewsArticles.length; i++) { %>
+                            <li>
+                                <%= `${techNewsArticles[i].title}`%>
+                                    <a href=<%=`${techNewsArticles[i].url}`%> target="_blank" aria-label=<%=`Follow
+                                            Article to ${techNewsArticles[i].source.name}`%>>Link</a>
                             </li>
-                        <%} %>
+                            <%} %>
                     </ul>
                 </div>
-                <div class="current_events"> 
+                <div class="current_events">
                     <h3>Business</h3>
                     <a href="https://www.cnn.com/business" target="_blank" aria-label="CNN Business News"> More
                         Business News</a>
                     <ul id="current_events">
-                        <% for(let i = 0;i < businessNewsArticles.length; i++) { %>
-                            <li><%= `${businessNewsArticles[i].title}`%>
-                            <a href=<%=`${businessNewsArticles[i].url}`%> target="_blank"  aria-label=<%=`Follow Article to ${businessNewsArticles[i].source.name}`%>>Link</a>
+                        <% for(let i=0;i < businessNewsArticles.length; i++) { %>
+                            <li>
+                                <%= `${businessNewsArticles[i].title}`%>
+                                    <a href=<%=`${businessNewsArticles[i].url}`%> target="_blank" aria-label=<%=`Follow
+                                            Article to ${businessNewsArticles[i].source.name}`%>>Link</a>
                             </li>
-                        <%} %>
+                            <%} %>
                     </ul>
                 </div>
             </div>
@@ -81,4 +88,5 @@
         </address>
     </footer>
 </body>
+
 </html>

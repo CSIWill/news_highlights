@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../public/css/stylesheet.css">
     <link rel="shortcut icon" href="../../public/media/picture/Picture1.svg" type="image/x-icon">
 </head>
+
 <body>
     <header>
         <nav>
@@ -27,11 +28,13 @@
             <%= `Here are the search results for ${urSearch}`%>
         </h2>
         <ul id="searchResults">
-            <% for(let i = 0;i < newsArticles.length; i++) { %>
-                <li><%= `${newsArticles[i].title} FROM ${newsArticles[i].source.name}`%>
-                <a href=<%=`${newsArticles[i].url}`%> target="_blank" aria-label=<%=`Follow Article to ${newsArticles[i].source.name}`%>>Link</a>
+            <% for(let i=0;i < newsArticles.length; i++) { %>
+                <li>
+                    <%= `${newsArticles[i].title} FROM ${newsArticles[i].source.name}`%>
+                        <a href=<%=`${newsArticles[i].url}`%> target="_blank" aria-label=<%=`Follow Article to
+                                ${newsArticles[i].source.name}`%>>Link</a>
                 </li>
-            <%} %>
+                <%} %>
         </ul>
     </main>
     <footer>
@@ -43,4 +46,5 @@
         </address>
     </footer>
 </body>
+
 </html>
